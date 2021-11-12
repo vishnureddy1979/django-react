@@ -1,4 +1,4 @@
-import React from "react";
+import React  from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { Button, Card } from "antd";
@@ -12,7 +12,7 @@ class ArticleDetail extends React.Component {
 
   componentDidMount() {
     const articleID = this.props.match.params.articleID;
-    axios.get(`http://127.0.0.1:8000/api/${articleID}`).then(res => {
+    axios.get(`http://10.168.242.38:8000/api/${articleID}`).then(res => {
       this.setState({
         article: res.data
       });
@@ -26,7 +26,7 @@ class ArticleDetail extends React.Component {
       "Content-Type": "application/json",
       Authorization: `Token ${this.props.token}`
     };
-    axios.delete(`http://127.0.0.1:8000/api/${articleID}/delete/`)
+    axios.delete(`http://10.168.242.38:8000/api/${articleID}/delete/`)
     .then(res => {
       if (res.status === 204) {
         this.props.history.push(`/`);

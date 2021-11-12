@@ -1,7 +1,8 @@
-import React from "react";
+import React  from "react";
 import { Form, Input, Button } from "antd";
 import { connect } from "react-redux";
 import axios from "axios";
+import { withRouter } from 'react-router-dom'
 
 const FormItem = Form.Item;
 
@@ -24,14 +25,14 @@ class CustomForm extends React.Component {
     };
     
     if (requestType === "post") {
-      await axios.post("http://127.0.0.1:8000/api/create/", postObj)
+      await axios.post("http://10.168.242.38:8000/api/create/", postObj)
         .then(res => {
           if (res.status === 201) {
             this.props.history.push(`/`);
           }
         })
     } else if (requestType === "put") {
-      await axios.put(`http://127.0.0.1:8000/api/${articleID}/update/`, postObj)
+      await axios.put(`http://10.168.242.38:8000/api/${articleID}/update/`, postObj)
         .then(res => {
           if (res.status === 200) {
             this.props.history.push(`/`);
@@ -75,4 +76,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(CustomForm);
+export default withRouter(connect(mapStateToProps)(CustomForm));
